@@ -1,0 +1,499 @@
+{
+ "Resources": {
+  "JavaSpringMicroserviceVPC65BD6E9E": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "JavaSpringMicroserviceVPC"
+     }
+    ]
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1Subnet1C1EFB4D": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1RouteTable823A840E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1RouteTableAssociationBFE48F18": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet1RouteTable823A840E"
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet1Subnet1C1EFB4D"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1DefaultRouteE38B2A14": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "JavaSpringMicroserviceVPCIGWC793540B"
+    },
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet1RouteTable823A840E"
+    }
+   },
+   "DependsOn": [
+    "JavaSpringMicroserviceVPCVPCGW77DE970A"
+   ]
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1EIP93669A4B": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet1"
+     }
+    ]
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet1NATGatewayD75D7471": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "JavaSpringMicroserviceVPCPublicSubnet1EIP93669A4B",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet1Subnet1C1EFB4D"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "JavaSpringMicroserviceVPCPublicSubnet1DefaultRouteE38B2A14",
+    "JavaSpringMicroserviceVPCPublicSubnet1RouteTableAssociationBFE48F18"
+   ]
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2Subnet5A22D568": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2RouteTable08F64A54": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2RouteTableAssociation60463056": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet2RouteTable08F64A54"
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet2Subnet5A22D568"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2DefaultRoute28289E8B": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "JavaSpringMicroserviceVPCIGWC793540B"
+    },
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet2RouteTable08F64A54"
+    }
+   },
+   "DependsOn": [
+    "JavaSpringMicroserviceVPCVPCGW77DE970A"
+   ]
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2EIPC42C32A2": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet2"
+     }
+    ]
+   }
+  },
+  "JavaSpringMicroserviceVPCPublicSubnet2NATGatewayC56EDE82": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "JavaSpringMicroserviceVPCPublicSubnet2EIPC42C32A2",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet2Subnet5A22D568"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "JavaSpringMicroserviceVPCPublicSubnet2DefaultRoute28289E8B",
+    "JavaSpringMicroserviceVPCPublicSubnet2RouteTableAssociation60463056"
+   ]
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet1Subnet1F45E743": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet1RouteTable55AE82AC": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet1RouteTableAssociationDB490C89": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet1RouteTable55AE82AC"
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet1Subnet1F45E743"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet1DefaultRoute2571261A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet1NATGatewayD75D7471"
+    },
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet1RouteTable55AE82AC"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet2Subnet07117E13": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet2RouteTable53F70CC5": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "localstack/JavaSpringMicroserviceVPC/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet2RouteTableAssociation2A21DC75": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet2RouteTable53F70CC5"
+    },
+    "SubnetId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet2Subnet07117E13"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCPrivateSubnet2DefaultRoute43E7570F": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "JavaSpringMicroserviceVPCPublicSubnet2NATGatewayC56EDE82"
+    },
+    "RouteTableId": {
+     "Ref": "JavaSpringMicroserviceVPCPrivateSubnet2RouteTable53F70CC5"
+    }
+   }
+  },
+  "JavaSpringMicroserviceVPCIGWC793540B": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "JavaSpringMicroserviceVPC"
+     }
+    ]
+   }
+  },
+  "JavaSpringMicroserviceVPCVPCGW77DE970A": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "JavaSpringMicroserviceVPCIGWC793540B"
+    },
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "PatientServiceDBSubnetGroupCED49D16": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Subnet group for PatientServiceDB database",
+    "SubnetIds": [
+     {
+      "Ref": "JavaSpringMicroserviceVPCPrivateSubnet1Subnet1F45E743"
+     },
+     {
+      "Ref": "JavaSpringMicroserviceVPCPrivateSubnet2Subnet07117E13"
+     }
+    ]
+   }
+  },
+  "PatientServiceDBSecurityGroup6B97C0E5": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for PatientServiceDB database",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "JavaSpringMicroserviceVPC65BD6E9E"
+    }
+   }
+  },
+  "localstackPatientServiceDBSecret20E0A9443fdaad7efa858a3daf9490cf0a702aeb": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Generated by the CDK for stack: ",
+       {
+        "Ref": "AWS::StackName"
+       }
+      ]
+     ]
+    },
+    "GenerateSecretString": {
+     "ExcludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"root\"}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "PatientServiceDBSecretAttachment90D77B03": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "localstackPatientServiceDBSecret20E0A9443fdaad7efa858a3daf9490cf0a702aeb"
+    },
+    "TargetId": {
+     "Ref": "PatientServiceDBB84F9BF9"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   }
+  },
+  "PatientServiceDBB84F9BF9": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "20",
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t2.micro",
+    "DBName": "patient-service-db",
+    "DBSubnetGroupName": {
+     "Ref": "PatientServiceDBSubnetGroupCED49D16"
+    },
+    "Engine": "mysql",
+    "EngineVersion": "8.0.37",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "localstackPatientServiceDBSecret20E0A9443fdaad7efa858a3daf9490cf0a702aeb"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": "root",
+    "StorageType": "gp2",
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "PatientServiceDBSecurityGroup6B97C0E5",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  }
+ }
+}

@@ -1,0 +1,21 @@
+services:
+  api-gateway:
+    image: api-gateway:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4004:4004"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - AUTH_SERVICE_URL=auth-service.auth-service.orb.local
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

@@ -1,0 +1,9 @@
+POST patient-service.patient-service.orb.local/patients
+Content-Type: application/json
+
+{
+    "name": "Lamine Thiam",
+    "email": "lamine@gmail.com",
+    "dateOfBirth": "1990-01-01",
+    "address": "Parcelles Assainies U17"
+}

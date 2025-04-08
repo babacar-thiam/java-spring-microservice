@@ -1,0 +1,193 @@
+{
+  "version": "39.0.0",
+  "artifacts": {
+    "localstack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "localstack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}"
+      },
+      "metadata": {
+        "/localstack/JavaSpringMicroserviceVPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPC65BD6E9E"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1Subnet1C1EFB4D"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1RouteTable823A840E"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1RouteTableAssociationBFE48F18"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1DefaultRouteE38B2A14"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1EIP93669A4B"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet1NATGatewayD75D7471"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2Subnet5A22D568"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2RouteTable08F64A54"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2RouteTableAssociation60463056"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2DefaultRoute28289E8B"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2EIPC42C32A2"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPublicSubnet2NATGatewayC56EDE82"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet1Subnet1F45E743"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet1RouteTable55AE82AC"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet1RouteTableAssociationDB490C89"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet1DefaultRoute2571261A"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet2Subnet07117E13"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet2RouteTable53F70CC5"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet2RouteTableAssociation2A21DC75"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCPrivateSubnet2DefaultRoute43E7570F"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCIGWC793540B"
+          }
+        ],
+        "/localstack/JavaSpringMicroserviceVPC/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "JavaSpringMicroserviceVPCVPCGW77DE970A"
+          }
+        ],
+        "/localstack/PatientServiceDB/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDBSubnetGroupCED49D16"
+          }
+        ],
+        "/localstack/PatientServiceDB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDBSecurityGroup6B97C0E5"
+          }
+        ],
+        "/localstack/PatientServiceDB/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "localstackPatientServiceDBSecret20E0A9443fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/localstack/PatientServiceDB/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDBSecretAttachment90D77B03"
+          }
+        ],
+        "/localstack/PatientServiceDB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDBB84F9BF9"
+          }
+        ]
+      },
+      "displayName": "localstack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

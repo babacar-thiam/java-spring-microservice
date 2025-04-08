@@ -1,0 +1,36 @@
+services:
+  kafka-service:
+    image: bitnami/kafka:latest
+    container_name: kafka_container
+    ports:
+      - "9092:9092"
+      - "9094:9094"
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-service.kafka-service.orb.local:9092,EXTERNAL://kafka-service.kafka-service.orb.local:9094
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-service.kafka-service.orb.local:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - internal
+      
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      - KAFKA_BROKERCONNECT=kafka-service.kafka-service.orb.local:9092
+      - JVM_OPTS=-Xms32M -Xmx64M
+      - SERVER_SERVLET_CONTEXTPATH=/
+    depends_on:
+      - kafka-service
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

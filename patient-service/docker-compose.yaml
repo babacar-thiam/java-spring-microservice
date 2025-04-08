@@ -1,0 +1,41 @@
+services:
+  patient-service:
+    image: patient-service:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_patient_service_container:3306/patientdb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=rootpassword
+      - SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - BILLING_SERVICE_ADDRESS=billing-service.billing-service.orb.local
+      - BILLING_SERVICE_PORT=9001
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-service.kafka-service.orb.local:9092
+    depends_on:
+      - mysql
+    networks:
+      - internal
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql_patient_service_container
+    environment:
+        MYSQL_ROOT_PASSWORD: rootpassword
+        MYSQL_DATABASE: patientdb
+    ports:
+      - "3306:3306"
+    networks:
+      - internal
+    volumes:
+      - /Users/babacarthiam/Developer/db_volumes/patient-service-db:/var/lib/mysql
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

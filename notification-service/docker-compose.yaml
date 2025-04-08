@@ -1,0 +1,17 @@
+services:
+  notification-service:
+    image: notification-service:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4003:4003"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-service.kafka-service.orb.local:9092
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

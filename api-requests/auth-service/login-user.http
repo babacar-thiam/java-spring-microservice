@@ -1,0 +1,7 @@
+POST auth-service.auth-service.orb.local/login
+Content-Type: application/json
+
+{
+    "email": "babacarthiam@gmail.com",
+    "password": "abc123"
+}
